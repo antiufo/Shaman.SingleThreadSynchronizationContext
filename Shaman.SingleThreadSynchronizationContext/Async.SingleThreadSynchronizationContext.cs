@@ -246,7 +246,6 @@ namespace Shaman.Runtime
 
         private void RunOnCurrentThread()
         {
-            Thread = Thread.CurrentThread;
             while (true)
             {
                 Job workItem;
@@ -429,6 +428,7 @@ namespace Shaman.Runtime
             var syncCtx = new SingleThreadSynchronizationContext();
             try
             {
+                syncCtx.Thread = Thread.CurrentThread;
                 syncCtx.onFirstLateArrival = onFirstLateArrival;
                 //Console.WriteLine("Running " + syncCtx.GetHashCode() + " on thread " + Environment.CurrentManagedThreadId);
                 syncCtx.lateArrivalBehavior = lateArrivalBehavior;
@@ -507,10 +507,16 @@ namespace Shaman.Runtime
                 catch (ObjectDisposedException)
                 {
                 }
-                if (q.Count == 0)
+                try
                 {
-                    q.Dispose();
-                    this.m_queue = null;
+                    if (q.Count == 0)
+                    {
+                        q.Dispose();
+                        this.m_queue = null;
+                    }
+                }
+                catch (ObjectDisposedException)
+                {
                 }
                 var f = this.onFailureForwardTo;
                 if (f != null)
