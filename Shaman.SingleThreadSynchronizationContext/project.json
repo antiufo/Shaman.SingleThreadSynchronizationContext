@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0.7",
+  "version": "1.0.0.8",
   "authors": [
     "Andrea Martinelli"
   ],
@@ -23,8 +23,8 @@
   },
   "compile": [],
   "dependencies": {
-    "Shaman.Configuration.Metadata": "1.0.1.1",
-    "Shaman.Reflection": "1.0.0.11"
+    "Shaman.Configuration.Metadata": "1.0.1.2",
+    "Shaman.Reflection": "1.0.0.21"
   },
   "frameworks": {
     "net45": {},
