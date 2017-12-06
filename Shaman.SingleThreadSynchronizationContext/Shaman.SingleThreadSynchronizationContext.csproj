@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Provides a single-threaded synchronization context, which makes it easy to reason about asynchronous code in environments that don't usually provide a synchronization context (for example, console applications).</Description>
+    <VersionPrefix>1.0.0.9</VersionPrefix>
+    <Authors>Andrea Martinelli</Authors>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <DefineConstants>$(DefineConstants);SHAMAN_CORE;DESKTOP</DefineConstants>
+    <AssemblyName>Shaman.SingleThreadSynchronizationContext</AssemblyName>
+    <AssemblyOriginatorKeyFile>ShamanOpenSourceKey.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+    <PackageId>Shaman.SingleThreadSynchronizationContext</PackageId>
+    <PackageTags>SynchronizationContext;async;asynchronous;continuations;coroutines;console</PackageTags>
+    <PackageIconUrl>http://shaman.io/images/shaman-nuget-icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/antiufo/Shaman.SingleThreadSynchronizationContext</PackageProjectUrl>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <DefineConstants>$(DefineConstants);CORECLR</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Shaman.Configuration.Metadata" Version="1.0.1.2" />
+    <PackageReference Include="Shaman.Reflection" Version="1.0.0.23" />
+  </ItemGroup>
+</Project>
